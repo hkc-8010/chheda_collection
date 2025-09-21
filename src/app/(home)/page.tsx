@@ -225,6 +225,252 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Latest Products Section */}
+      <section className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">Latest Arrivals</h2>
+          <p className="text-muted-foreground text-lg">
+            Discover our newest additions
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {featuredProducts.slice(0, 4).map((product) => (
+            <Link key={`latest-${product.id}`} href={`/products/${product.id}`}>
+              <Card className="group overflow-hidden hover:shadow-lg transition-shadow">
+                <CardContent className="p-0">
+                  <div className="relative h-64">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <Badge className="absolute top-2 left-2 bg-green-500">
+                      New
+                    </Badge>
+                  </div>
+                  
+                  <div className="p-4">
+                    <div className="text-sm text-muted-foreground mb-1">
+                      {product.category}
+                    </div>
+                    <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">
+                      {product.name}
+                    </h3>
+                    
+                    <div className="flex items-center mb-2">
+                      <div className="flex items-center">
+                        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                        <span className="text-sm ml-1">{product.rating}</span>
+                      </div>
+                      <span className="text-sm text-muted-foreground ml-2">
+                        ({product.reviews} reviews)
+                      </span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-lg">
+                        ${product.price}
+                      </span>
+                      <Button size="sm" variant="ghost" className="opacity-0 group-hover:opacity-100 transition-opacity">
+                        <ShoppingBag className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Best Sellers Section */}
+      <section className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">Best Sellers</h2>
+          <p className="text-muted-foreground text-lg">
+            Our most popular items
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {featuredProducts.slice().reverse().map((product) => (
+            <Link key={`bestseller-${product.id}`} href={`/products/${product.id}`}>
+              <Card className="group overflow-hidden hover:shadow-lg transition-shadow">
+                <CardContent className="p-0">
+                  <div className="relative h-64">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <Badge className="absolute top-2 left-2 bg-blue-500">
+                      Best Seller
+                    </Badge>
+                  </div>
+                  
+                  <div className="p-4">
+                    <div className="text-sm text-muted-foreground mb-1">
+                      {product.category}
+                    </div>
+                    <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">
+                      {product.name}
+                    </h3>
+                    
+                    <div className="flex items-center mb-2">
+                      <div className="flex items-center">
+                        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                        <span className="text-sm ml-1">{product.rating}</span>
+                      </div>
+                      <span className="text-sm text-muted-foreground ml-2">
+                        ({product.reviews} reviews)
+                      </span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-lg">
+                        ${product.price}
+                      </span>
+                      <Button size="sm" variant="ghost" className="opacity-0 group-hover:opacity-100 transition-opacity">
+                        <ShoppingBag className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Deals and Discounts Section */}
+      <section className="bg-gradient-to-r from-red-50 to-pink-50 py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Special Deals</h2>
+            <p className="text-muted-foreground text-lg">
+              Limited time offers you don&apos;t want to miss
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredProducts.filter(p => p.originalPrice).map((product) => (
+              <Link key={`deal-${product.id}`} href={`/products/${product.id}`}>
+                <Card className="group overflow-hidden hover:shadow-lg transition-shadow">
+                  <CardContent className="p-0">
+                    <div className="relative h-64">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <Badge className="absolute top-2 left-2 bg-red-500">
+                        {Math.round(((product.originalPrice! - product.price) / product.originalPrice!) * 100)}% OFF
+                      </Badge>
+                    </div>
+                    
+                    <div className="p-4">
+                      <div className="text-sm text-muted-foreground mb-1">
+                        {product.category}
+                      </div>
+                      <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">
+                        {product.name}
+                      </h3>
+                      
+                      <div className="flex items-center mb-2">
+                        <div className="flex items-center">
+                          <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                          <span className="text-sm ml-1">{product.rating}</span>
+                        </div>
+                        <span className="text-sm text-muted-foreground ml-2">
+                          ({product.reviews} reviews)
+                        </span>
+                      </div>
+                      
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          <span className="font-bold text-lg text-red-600">
+                            ${product.price}
+                          </span>
+                          <span className="text-sm text-muted-foreground line-through">
+                            ${product.originalPrice}
+                          </span>
+                        </div>
+                        <Button size="sm" variant="ghost" className="opacity-0 group-hover:opacity-100 transition-opacity">
+                          <ShoppingBag className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">What Our Customers Say</h2>
+          <p className="text-muted-foreground text-lg">
+            Real reviews from real customers
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            {
+              name: "Sarah Johnson",
+              rating: 5,
+              comment: "Amazing quality and fast shipping! I've ordered multiple times and never been disappointed.",
+              product: "Classic Cotton T-Shirt"
+            },
+            {
+              name: "Mike Chen",
+              rating: 5,
+              comment: "The jeans fit perfectly and the material is top-notch. Great value for money!",
+              product: "Slim Fit Denim Jeans"
+            },
+            {
+              name: "Emily Davis",
+              rating: 4,
+              comment: "Love the sneakers! Super comfortable and stylish. Will definitely buy again.",
+              product: "Casual Sneakers"
+            }
+          ].map((testimonial, index) => (
+            <Card key={index} className="p-6">
+              <CardContent className="p-0">
+                <div className="flex items-center mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`h-4 w-4 ${
+                        i < testimonial.rating
+                          ? 'fill-yellow-400 text-yellow-400'
+                          : 'text-gray-300'
+                      }`}
+                    />
+                  ))}
+                </div>
+                <p className="text-muted-foreground mb-4 italic">
+                  &quot;{testimonial.comment}&quot;
+                </p>
+                <div>
+                  <p className="font-semibold">{testimonial.name}</p>
+                  <p className="text-sm text-muted-foreground">
+                    Purchased: {testimonial.product}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
       {/* Newsletter Section */}
       <section className="bg-muted/50 py-16">
         <div className="container mx-auto px-4 text-center">
