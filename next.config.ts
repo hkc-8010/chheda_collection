@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
+  // Vercel deployment optimizations
+  output: 'standalone',
+  poweredByHeader: false,
+  compress: true,
 };
 
 export default nextConfig;
