@@ -74,52 +74,52 @@
 
 ### 3. Core Features - Customer Side [ ]
 
-#### 3.1 Home Layout [ ]
-- [ ] Create `(home)` folder in `app` directory
-- [ ] Header component:
-  - [ ] Logo and branding
-  - [ ] Search bar with autocomplete
-  - [ ] Navigation menu (Categories, Deals, Account)
-  - [ ] Shopping cart icon with item count
-  - [ ] User authentication buttons/menu
-- [ ] Footer component:
-  - [ ] Links (About, Contact, Privacy, Terms)
-  - [ ] Social media links
-  - [ ] Newsletter signup
-  - [ ] Payment method icons
+#### 3.1 Home Layout [X]
+- [X] Create `(home)` folder in `app` directory
+- [X] Header component:
+  - [X] Logo and branding
+  - [X] Search bar with autocomplete
+  - [X] Navigation menu (Categories, Deals, Account)
+  - [X] Shopping cart icon with item count
+  - [X] User authentication buttons/menu
+- [X] Footer component:
+  - [X] Links (About, Contact, Privacy, Terms)
+  - [X] Social media links
+  - [X] Newsletter signup
+  - [X] Payment method icons
 
-#### 3.2 Homepage [ ]
-- [ ] Hero banner carousel:
-  - [ ] Featured products/promotions
-  - [ ] Auto-rotating slides
-  - [ ] Call-to-action buttons
-- [ ] Product sections:
-  - [ ] Latest products grid
-  - [ ] Featured categories
-  - [ ] Best sellers
-  - [ ] Deals and discounts
-- [ ] Testimonials/reviews section
-- [ ] Newsletter subscription
+#### 3.2 Homepage [X]
+- [X] Hero banner carousel:
+  - [X] Featured products/promotions
+  - [X] Auto-rotating slides
+  - [X] Call-to-action buttons
+- [X] Product sections:
+  - [X] Latest products grid
+  - [X] Featured categories
+  - [X] Best sellers
+  - [X] Deals and discounts
+- [X] Testimonials/reviews section
+- [X] Newsletter subscription
 
-#### 3.3 Products Catalog [ ]
-- [ ] Product listing page:
-  - [ ] Sidebar with filters:
-    - [ ] Categories tree
-    - [ ] Price range slider
-    - [ ] Brand filter
-    - [ ] Rating filter
-    - [ ] Availability filter
-  - [ ] Search functionality:
-    - [ ] Search bar with suggestions
-    - [ ] Search results page
-    - [ ] Search filters and sorting
-  - [ ] Product grid:
-    - [ ] Product cards with images
-    - [ ] Price, rating, and quick actions
-    - [ ] Wishlist functionality
+#### 3.3 Products Catalog [X]
+- [X] Product listing page:
+  - [X] Sidebar with filters:
+    - [X] Categories tree
+    - [X] Price range slider
+    - [X] Brand filter
+    - [X] Rating filter
+    - [X] Availability filter
+  - [X] Search functionality:
+    - [X] Search bar with suggestions
+    - [X] Search results page
+    - [X] Search filters and sorting
+  - [X] Product grid:
+    - [X] Product cards with images
+    - [X] Price, rating, and quick actions
+    - [X] Wishlist functionality
     - [ ] Quick view modal
-  - [ ] Pagination and infinite scroll
-  - [ ] Sort options (price, rating, newest, popularity)
+  - [X] Pagination and infinite scroll
+  - [X] Sort options (price, rating, newest, popularity)
 
 #### 3.4 Product Detail Pages [ ]
 - [ ] Product detail page layout:
