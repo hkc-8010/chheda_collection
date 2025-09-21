@@ -4,7 +4,8 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from '@/components/ui/dialog';
+import { VisuallyHidden } from '@/components/ui/visually-hidden';
 
 interface ProductImageGalleryProps {
   images: string[];
@@ -76,6 +77,9 @@ export function ProductImageGallery({ images, productName }: ProductImageGallery
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-4xl">
+            <VisuallyHidden>
+              <DialogTitle>{productName} - Image Gallery</DialogTitle>
+            </VisuallyHidden>
             <div className="relative aspect-square">
               <Image
                 src={images[selectedImage]}

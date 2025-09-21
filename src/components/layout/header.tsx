@@ -22,7 +22,7 @@ export function Header() {
   const { data: session, status } = useSession();
 
   const navigation = [
-    { name: 'Categories', href: '/categories' },
+    { name: 'Categories', href: '/products' },
     { name: 'Deals', href: '/deals' },
     { name: 'New Arrivals', href: '/new-arrivals' },
   ];

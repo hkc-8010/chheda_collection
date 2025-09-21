@@ -52,19 +52,19 @@ export default function HomePage() {
   const categories = [
     {
       name: 'T-Shirts',
-      href: '/categories/t-shirts',
+      href: '/products',
       image: '/images/c-tshirts.jpg',
       description: 'Comfortable everyday wear',
     },
     {
       name: 'Jeans',
-      href: '/categories/jeans',
+      href: '/products',
       image: '/images/c-jeans.jpg',
       description: 'Premium denim collection',
     },
     {
       name: 'Shoes',
-      href: '/categories/shoes',
+      href: '/products',
       image: '/images/c-shoes.jpg',
       description: 'Step out in style',
     },
@@ -91,7 +91,9 @@ export default function HomePage() {
   return (
     <div className="space-y-16">
       {/* Hero Carousel */}
-      <HeroCarousel />
+      <div className="pt-8">
+        <HeroCarousel />
+      </div>
 
       {/* Features Section */}
       <section className="container mx-auto px-4">

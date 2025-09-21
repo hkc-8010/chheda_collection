@@ -24,10 +24,10 @@ export function Footer() {
       { name: 'Accessibility', href: '/accessibility' },
     ],
     categories: [
-      { name: 'T-Shirts', href: '/categories/t-shirts' },
-      { name: 'Jeans', href: '/categories/jeans' },
-      { name: 'Shoes', href: '/categories/shoes' },
-      { name: 'Accessories', href: '/categories/accessories' },
+      { name: 'T-Shirts', href: '/products' },
+      { name: 'Jeans', href: '/products' },
+      { name: 'Shoes', href: '/products' },
+      { name: 'Accessories', href: '/products' },
     ],
   };
 
