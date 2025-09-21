@@ -51,26 +51,26 @@
   - [X] NextAuth.js beta for authentication
   - [X] Stripe for payments
 
-### 2. Database and Authentication [ ]
+### 2. Database and Authentication [X]
 
-- [ ] Set up PostgreSQL database
-- [ ] Configure Prisma schema:
-  - [ ] User model (id, email, name, role, createdAt, updatedAt)
-  - [ ] Product model (id, name, description, price, images, categoryId, stock, createdAt, updatedAt)
-  - [ ] Category model (id, name, description, slug, parentId)
-  - [ ] Order model (id, userId, status, total, shippingAddress, createdAt, updatedAt)
-  - [ ] OrderItem model (id, orderId, productId, quantity, price)
-  - [ ] Review model (id, userId, productId, rating, comment, createdAt)
-  - [ ] Cart model (id, userId, createdAt, updatedAt)
-  - [ ] CartItem model (id, cartId, productId, quantity)
-  - [ ] Address model (id, userId, street, city, state, zipCode, country, isDefault)
-- [ ] Run Prisma migrations
-- [ ] Implement NextAuth.js authentication:
-  - [ ] Email/Password provider
-  - [ ] OAuth providers (Google, GitHub)
-  - [ ] JWT handling and session management
-  - [ ] Protected routes middleware
-  - [ ] Role-based access control (USER, ADMIN)
+- [X] Set up PostgreSQL database
+- [X] Configure Prisma schema:
+  - [X] User model (id, email, name, role, createdAt, updatedAt)
+  - [X] Product model (id, name, description, price, images, categoryId, stock, createdAt, updatedAt)
+  - [X] Category model (id, name, description, slug, parentId)
+  - [X] Order model (id, userId, status, total, shippingAddress, createdAt, updatedAt)
+  - [X] OrderItem model (id, orderId, productId, quantity, price)
+  - [X] Review model (id, userId, productId, rating, comment, createdAt)
+  - [X] Cart model (id, userId, createdAt, updatedAt)
+  - [X] CartItem model (id, cartId, productId, quantity)
+  - [X] Address model (id, userId, street, city, state, zipCode, country, isDefault)
+- [ ] Run Prisma migrations (pending DB connection)
+- [X] Implement NextAuth.js authentication:
+  - [X] Email/Password provider
+  - [X] OAuth providers (Google, GitHub)
+  - [X] JWT handling and session management
+  - [X] Protected routes middleware
+  - [X] Role-based access control (USER, ADMIN)
 
 ### 3. Core Features - Customer Side [ ]
 
