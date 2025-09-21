@@ -64,7 +64,7 @@
   - [X] Cart model (id, userId, createdAt, updatedAt)
   - [X] CartItem model (id, cartId, productId, quantity)
   - [X] Address model (id, userId, street, city, state, zipCode, country, isDefault)
-- [ ] Run Prisma migrations (pending DB connection)
+- [X] Run Prisma migrations
 - [X] Implement NextAuth.js authentication:
   - [X] Email/Password provider
   - [X] OAuth providers (Google, GitHub)
