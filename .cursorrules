@@ -1,0 +1,429 @@
+# Cursor Rules
+
+## Instructions
+
+- Record fixes for mistakes or corrections to avoid repetition in the `Lessons` section.
+- Organize thoughts and plan steps before starting a task in the `Scratchpad` section.
+- Clear old tasks if necessary.
+- Use todo markers for progress tracking:
+  - `[X]` Completed tasks
+  - `[ ]` Pending tasks
+- Update Scratchpad after completing subtasks.
+- Reflect and plan after milestones for better task management.
+- Always refer to Scratchpad before planning the next step.
+
+## Lessons
+
+1. Use `npx shadcn@latest add [component]` instead of `npx shadcn-ui@latest add [component]` when installing Shadcn UI components.
+2. In Next.js 14+, page props params must be typed as a Promise. Example:
+   ```typescript
+   type tParams = Promise<{ id: string }>
+   interface PageProps {
+     params: tParams
+   }
+   ```
+   Then await the params in the component:
+   ```typescript
+   export default async function Page(props: PageProps) {
+     const { id } = await props.params
+   }
+   ```
+3. Use `const session = await auth()` instead of `const session = await getServerSession(authOptions)` for Next.js authentication. The new `auth()` function is the recommended way to get the session in Next.js Auth v5.
+4. When importing `useRouter` from 'next/navigation', the component must be marked as a client component using the `'use client'` directive at the top of the file, as this hook only works on the client side.
+
+## Scratchpad
+
+### 1. Project Setup and Configuration [X]
+
+- [X] Initialize Next.js 15 project with TypeScript
+- [X] Set up project structure and folders
+- [X] Configure ESLint and Prettier
+- [X] Install and configure dependencies:
+  - [X] Shadcn UI components
+  - [X] Lucide icons
+  - [X] Zod for validation
+  - [X] Zustand for state management
+  - [X] Recharts for analytics
+  - [X] Resend for emails
+  - [X] Uploadthing for file uploads
+  - [X] Prisma ORM
+  - [ ] PostgreSQL database
+  - [X] NextAuth.js beta for authentication
+  - [X] Stripe for payments
+
+### 2. Database and Authentication [ ]
+
+- [ ] Set up PostgreSQL database
+- [ ] Configure Prisma schema:
+  - [ ] User model (id, email, name, role, createdAt, updatedAt)
+  - [ ] Product model (id, name, description, price, images, categoryId, stock, createdAt, updatedAt)
+  - [ ] Category model (id, name, description, slug, parentId)
+  - [ ] Order model (id, userId, status, total, shippingAddress, createdAt, updatedAt)
+  - [ ] OrderItem model (id, orderId, productId, quantity, price)
+  - [ ] Review model (id, userId, productId, rating, comment, createdAt)
+  - [ ] Cart model (id, userId, createdAt, updatedAt)
+  - [ ] CartItem model (id, cartId, productId, quantity)
+  - [ ] Address model (id, userId, street, city, state, zipCode, country, isDefault)
+- [ ] Run Prisma migrations
+- [ ] Implement NextAuth.js authentication:
+  - [ ] Email/Password provider
+  - [ ] OAuth providers (Google, GitHub)
+  - [ ] JWT handling and session management
+  - [ ] Protected routes middleware
+  - [ ] Role-based access control (USER, ADMIN)
+
+### 3. Core Features - Customer Side [ ]
+
+#### 3.1 Home Layout [ ]
+- [ ] Create `(home)` folder in `app` directory
+- [ ] Header component:
+  - [ ] Logo and branding
+  - [ ] Search bar with autocomplete
+  - [ ] Navigation menu (Categories, Deals, Account)
+  - [ ] Shopping cart icon with item count
+  - [ ] User authentication buttons/menu
+- [ ] Footer component:
+  - [ ] Links (About, Contact, Privacy, Terms)
+  - [ ] Social media links
+  - [ ] Newsletter signup
+  - [ ] Payment method icons
+
+#### 3.2 Homepage [ ]
+- [ ] Hero banner carousel:
+  - [ ] Featured products/promotions
+  - [ ] Auto-rotating slides
+  - [ ] Call-to-action buttons
+- [ ] Product sections:
+  - [ ] Latest products grid
+  - [ ] Featured categories
+  - [ ] Best sellers
+  - [ ] Deals and discounts
+- [ ] Testimonials/reviews section
+- [ ] Newsletter subscription
+
+#### 3.3 Products Catalog [ ]
+- [ ] Product listing page:
+  - [ ] Sidebar with filters:
+    - [ ] Categories tree
+    - [ ] Price range slider
+    - [ ] Brand filter
+    - [ ] Rating filter
+    - [ ] Availability filter
+  - [ ] Search functionality:
+    - [ ] Search bar with suggestions
+    - [ ] Search results page
+    - [ ] Search filters and sorting
+  - [ ] Product grid:
+    - [ ] Product cards with images
+    - [ ] Price, rating, and quick actions
+    - [ ] Wishlist functionality
+    - [ ] Quick view modal
+  - [ ] Pagination and infinite scroll
+  - [ ] Sort options (price, rating, newest, popularity)
+
+#### 3.4 Product Detail Pages [ ]
+- [ ] Product detail page layout:
+  - [ ] Image gallery:
+    - [ ] Main product image
+    - [ ] Thumbnail navigation
+    - [ ] Zoom functionality
+    - [ ] Multiple product images
+  - [ ] Product information:
+    - [ ] Title, brand, and SKU
+    - [ ] Price and discount display
+    - [ ] Stock status and availability
+    - [ ] Product description and specifications
+    - [ ] Size/color/variant selection
+    - [ ] Quantity selector
+    - [ ] Add to cart and buy now buttons
+    - [ ] Add to wishlist button
+  - [ ] Reviews and ratings:
+    - [ ] Overall rating display
+    - [ ] Review list with pagination
+    - [ ] Review form for authenticated users
+    - [ ] Star rating component
+    - [ ] Review filtering and sorting
+  - [ ] Related products:
+    - [ ] "Customers also bought" section
+    - [ ] Similar products carousel
+    - [ ] Recently viewed products
+
+#### 3.5 Shopping Cart [ ]
+- [ ] Cart functionality:
+  - [ ] Add/remove items
+  - [ ] Update quantities
+  - [ ] Cart persistence (localStorage + database)
+  - [ ] Cart summary with totals
+  - [ ] Shipping calculator
+  - [ ] Promo code application
+- [ ] Cart page:
+  - [ ] Item list with images and details
+  - [ ] Quantity controls
+  - [ ] Remove item functionality
+  - [ ] Save for later option
+  - [ ] Continue shopping button
+  - [ ] Proceed to checkout button
+
+#### 3.6 Checkout Process [ ]
+- [ ] Multi-step checkout:
+  - [ ] Step 1: Shipping information
+    - [ ] Address form
+    - [ ] Saved addresses selection
+    - [ ] New address creation
+  - [ ] Step 2: Shipping method
+    - [ ] Shipping options with prices
+    - [ ] Delivery time estimates
+  - [ ] Step 3: Payment
+    - [ ] Stripe payment integration
+    - [ ] Credit card form
+    - [ ] Payment method selection
+    - [ ] Billing address
+  - [ ] Step 4: Order review
+    - [ ] Order summary
+    - [ ] Final totals
+    - [ ] Terms and conditions
+    - [ ] Place order button
+- [ ] Order confirmation:
+  - [ ] Order success page
+  - [ ] Order details display
+  - [ ] Email confirmation
+  - [ ] Order tracking information
+
+#### 3.7 User Dashboard [ ]
+- [ ] User account pages:
+  - [ ] Dashboard overview
+  - [ ] Order history:
+    - [ ] Order list with status
+    - [ ] Order details page
+    - [ ] Order tracking
+    - [ ] Reorder functionality
+  - [ ] Profile management:
+    - [ ] Personal information form
+    - [ ] Password change
+    - [ ] Account settings
+  - [ ] Address book:
+    - [ ] Saved addresses list
+    - [ ] Add/edit/delete addresses
+    - [ ] Default address selection
+  - [ ] Wishlist:
+    - [ ] Saved products list
+    - [ ] Move to cart functionality
+    - [ ] Remove from wishlist
+  - [ ] Reviews and ratings:
+    - [ ] Products to review
+    - [ ] Review history
+    - [ ] Edit reviews
+
+### 4. Admin Dashboard [ ]
+
+#### 4.1 Admin Authentication and Layout [ ]
+- [ ] Admin route protection:
+  - [ ] Role-based middleware
+  - [ ] Admin-only pages
+  - [ ] Redirect unauthorized users
+- [ ] Admin dashboard layout:
+  - [ ] Sidebar navigation
+  - [ ] Top navigation bar
+  - [ ] Breadcrumbs
+  - [ ] User menu with logout
+
+#### 4.2 Dashboard Overview [ ]
+- [ ] Key metrics cards:
+  - [ ] Total revenue (daily/monthly/yearly)
+  - [ ] Total orders count
+  - [ ] Total customers count
+  - [ ] Average order value
+  - [ ] Conversion rate
+- [ ] Sales analytics:
+  - [ ] Revenue chart (Recharts):
+    - [ ] Line chart for revenue trends
+    - [ ] Time period filters (daily/weekly/monthly/yearly)
+    - [ ] Comparison with previous periods
+  - [ ] Order statistics:
+    - [ ] Bar chart for order volume
+    - [ ] Order status distribution (pie chart)
+    - [ ] Peak ordering times
+- [ ] Recent orders table:
+  - [ ] Order list with key information
+  - [ ] Quick actions (view, process, update status)
+  - [ ] Sorting and filtering
+  - [ ] Pagination
+- [ ] Low stock alerts:
+  - [ ] Products below stock threshold
+  - [ ] Quick restock actions
+  - [ ] Stock level indicators
+- [ ] Top products:
+  - [ ] Best-selling products list
+  - [ ] Revenue by product
+  - [ ] Stock status for top products
+- [ ] Customer insights:
+  - [ ] New vs returning customers chart
+  - [ ] Customer acquisition trends
+  - [ ] Top customers by revenue
+
+#### 4.3 Product Management [ ]
+- [ ] Product list page:
+  - [ ] Data table with all products
+  - [ ] Search and filter functionality
+  - [ ] Bulk actions (delete, update status)
+  - [ ] Export to CSV
+  - [ ] Pagination
+- [ ] Product creation/editing:
+  - [ ] Product form with validation (Zod)
+  - [ ] Image upload (Uploadthing):
+    - [ ] Multiple image upload
+    - [ ] Image preview
+    - [ ] Drag and drop functionality
+  - [ ] Category selection
+  - [ ] Inventory management
+  - [ ] SEO fields (meta title, description)
+  - [ ] Product variants (size, color, etc.)
+- [ ] Category management:
+  - [ ] Category tree structure
+  - [ ] Add/edit/delete categories
+  - [ ] Category hierarchy
+  - [ ] Category images
+
+#### 4.4 Order Management [ ]
+- [ ] Order list page:
+  - [ ] All orders with status
+  - [ ] Advanced filtering (date, status, customer)
+  - [ ] Order search functionality
+  - [ ] Export orders data
+- [ ] Order details page:
+  - [ ] Complete order information
+  - [ ] Customer details
+  - [ ] Order items list
+  - [ ] Shipping information
+  - [ ] Payment details
+- [ ] Order processing:
+  - [ ] Update order status
+  - [ ] Add tracking information
+  - [ ] Print shipping labels
+  - [ ] Send status update emails
+- [ ] Refund handling:
+  - [ ] Process refunds through Stripe
+  - [ ] Partial refund support
+  - [ ] Refund history tracking
+
+#### 4.5 User Management [ ]
+- [ ] Customer list:
+  - [ ] All registered users
+  - [ ] Customer search and filtering
+  - [ ] Customer activity overview
+  - [ ] Order history per customer
+- [ ] Admin management:
+  - [ ] Admin user creation
+  - [ ] Role assignment
+  - [ ] Permission management
+- [ ] User actions:
+  - [ ] View customer details
+  - [ ] Customer order history
+  - [ ] Account status management
+  - [ ] Customer communication
+
+### 5. Advanced Features [ ]
+
+#### 5.1 Real-time Features [ ]
+- [ ] Real-time notifications:
+  - [ ] New order notifications
+  - [ ] Low stock alerts
+  - [ ] Customer messages
+- [ ] Live updates:
+  - [ ] Order status changes
+  - [ ] Inventory updates
+  - [ ] Dashboard metrics refresh
+
+#### 5.2 Email System (Resend) [ ]
+- [ ] Email templates:
+  - [ ] Order confirmation
+  - [ ] Shipping notifications
+  - [ ] Delivery confirmation
+  - [ ] Password reset
+  - [ ] Welcome email
+  - [ ] Newsletter
+- [ ] Email automation:
+  - [ ] Abandoned cart recovery
+  - [ ] Review request emails
+  - [ ] Promotional campaigns
+
+#### 5.3 Search and Performance [ ]
+- [ ] Search optimization:
+  - [ ] Elasticsearch integration (optional)
+  - [ ] Search autocomplete
+  - [ ] Search analytics
+  - [ ] Popular searches tracking
+- [ ] Performance optimization:
+  - [ ] Image optimization (Next.js Image)
+  - [ ] Caching strategies (Redis optional)
+  - [ ] Database query optimization
+  - [ ] API response caching
+  - [ ] Static page generation
+
+#### 5.4 Analytics and Reporting [ ]
+- [ ] Sales reports:
+  - [ ] Revenue reports by period
+  - [ ] Product performance reports
+  - [ ] Customer analytics
+- [ ] Export functionality:
+  - [ ] CSV/Excel exports
+  - [ ] PDF report generation
+  - [ ] Scheduled reports
+
+### 6. Testing and Quality Assurance [ ]
+
+- [ ] Unit testing:
+  - [ ] Component testing (Jest + React Testing Library)
+  - [ ] API route testing
+  - [ ] Utility function testing
+- [ ] Integration testing:
+  - [ ] Database integration tests
+  - [ ] API integration tests
+  - [ ] Payment flow testing
+- [ ] E2E testing:
+  - [ ] Playwright/Cypress setup
+  - [ ] Critical user journeys
+  - [ ] Admin workflow testing
+- [ ] Security audit:
+  - [ ] Authentication security
+  - [ ] Data validation
+  - [ ] SQL injection prevention
+  - [ ] XSS protection
+
+### 7. Deployment and DevOps [ ]
+
+- [ ] Production deployment:
+  - [ ] Environment configuration
+  - [ ] Database setup (PostgreSQL)
+  - [ ] File storage setup (Uploadthing)
+  - [ ] Email service setup (Resend)
+  - [ ] Payment setup (Stripe)
+- [ ] CI/CD pipeline:
+  - [ ] GitHub Actions setup
+  - [ ] Automated testing
+  - [ ] Deployment automation
+- [ ] Monitoring and logging:
+  - [ ] Error tracking (Sentry optional)
+  - [ ] Performance monitoring
+  - [ ] Database monitoring
+- [ ] Backup strategy:
+  - [ ] Database backups
+  - [ ] File storage backups
+  - [ ] Disaster recovery plan
+
+### 8. Documentation and Maintenance [ ]
+
+- [ ] Technical documentation:
+  - [ ] API documentation
+  - [ ] Database schema documentation
+  - [ ] Deployment guide
+  - [ ] Environment setup guide
+- [ ] User documentation:
+  - [ ] Admin user guide
+  - [ ] Customer user guide
+  - [ ] Troubleshooting guide
+- [ ] Maintenance tasks:
+  - [ ] Regular security updates
+  - [ ] Performance optimization
+  - [ ] Feature enhancements
+  - [ ] Bug fixes and patches
