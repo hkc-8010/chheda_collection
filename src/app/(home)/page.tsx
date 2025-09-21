@@ -4,6 +4,7 @@ import { ArrowRight, Star, ShoppingBag, Truck, Shield, Headphones } from 'lucide
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { HeroCarousel } from '@/components/home/hero-carousel';
 
 export default function HomePage() {
   // This would come from your database in a real app
@@ -89,41 +90,8 @@ export default function HomePage() {
 
   return (
     <div className="space-y-16">
-      {/* Hero Section */}
-      <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/banner1.jpg"
-            alt="Hero banner"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/40" />
-        </div>
-        
-        <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Discover Your Style
-          </h1>
-          <p className="text-lg md:text-xl mb-8 text-white/90">
-            Shop the latest trends in fashion with unbeatable prices and quality
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/products">
-              <Button size="lg" className="text-lg px-8">
-                Shop Now
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <Link href="/categories">
-              <Button size="lg" variant="outline" className="text-lg px-8 bg-white/10 border-white/20 text-white hover:bg-white/20">
-                View Collections
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Hero Carousel */}
+      <HeroCarousel />
 
       {/* Features Section */}
       <section className="container mx-auto px-4">
