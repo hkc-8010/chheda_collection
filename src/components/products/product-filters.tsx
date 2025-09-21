@@ -16,16 +16,17 @@ interface FilterState {
 }
 
 interface ProductFiltersProps {
-  onFiltersChange: (filters: FilterState) => void;
+  onFilterChange: (filters: FilterState) => void;
   categories: Array<{ id: string; name: string; count: number }>;
   priceRange: [number, number];
+  filters: FilterState;
 }
 
-export function ProductFilters({ onFiltersChange, categories, priceRange }: ProductFiltersProps) {
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedPriceRange, setSelectedPriceRange] = useState<[number, number]>(priceRange);
-  const [selectedRating, setSelectedRating] = useState<number | null>(null);
-  const [inStockOnly, setInStockOnly] = useState(false);
+export function ProductFilters({ onFilterChange, categories, priceRange, filters }: ProductFiltersProps) {
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(filters.categories);
+  const [selectedPriceRange, setSelectedPriceRange] = useState<[number, number]>(filters.priceRange);
+  const [selectedRating, setSelectedRating] = useState<number | null>(filters.rating);
+  const [inStockOnly, setInStockOnly] = useState(filters.inStock);
 
   const ratings = [5, 4, 3, 2, 1];
 
@@ -56,7 +57,7 @@ export function ProductFilters({ onFiltersChange, categories, priceRange }: Prod
   };
 
   const updateFilters = (newFilters: Partial<FilterState>) => {
-    onFiltersChange({
+    onFilterChange({
       categories: selectedCategories,
       priceRange: selectedPriceRange,
       rating: selectedRating,
@@ -70,7 +71,7 @@ export function ProductFilters({ onFiltersChange, categories, priceRange }: Prod
     setSelectedPriceRange(priceRange);
     setSelectedRating(null);
     setInStockOnly(false);
-    onFiltersChange({
+    onFilterChange({
       categories: [],
       priceRange: priceRange,
       rating: null,

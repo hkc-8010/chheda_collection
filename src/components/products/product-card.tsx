@@ -14,14 +14,13 @@ interface ProductCardProps {
     id: string;
     name: string;
     price: number;
-    originalPrice?: number;
     images: string[];
-    rating: number;
-    reviewCount: number;
-    category: string;
     stock: number;
-    isNew?: boolean;
-    isSale?: boolean;
+    avgRating: number;
+    category: {
+      name: string;
+    };
+    reviews: { rating: number }[];
   };
   onAddToCart?: (productId: string) => void;
   onAddToWishlist?: (productId: string) => void;
@@ -56,9 +55,7 @@ export function ProductCard({
     onQuickView?.(product.id);
   };
 
-  const discountPercentage = product.originalPrice 
-    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
-    : 0;
+  // For now, we don't have originalPrice in our schema, so no discount calculation
 
   return (
     <Link href={`/products/${product.id}`}>
@@ -75,19 +72,14 @@ export function ProductCard({
             
             {/* Badges */}
             <div className="absolute top-2 left-2 flex flex-col gap-1">
-              {product.isNew && (
-                <Badge className="bg-green-500 hover:bg-green-600">
-                  New
-                </Badge>
-              )}
-              {product.isSale && discountPercentage > 0 && (
-                <Badge className="bg-red-500 hover:bg-red-600">
-                  -{discountPercentage}%
-                </Badge>
-              )}
               {product.stock === 0 && (
                 <Badge variant="secondary" className="bg-gray-500 text-white">
                   Out of Stock
+                </Badge>
+              )}
+              {product.stock > 0 && product.stock <= 5 && (
+                <Badge className="bg-orange-500 hover:bg-orange-600">
+                  Low Stock
                 </Badge>
               )}
             </div>
@@ -152,7 +144,7 @@ export function ProductCard({
           <div className="p-4 space-y-2">
             {/* Category */}
             <div className="text-xs text-muted-foreground uppercase tracking-wide">
-              {product.category}
+              {product.category.name}
             </div>
 
             {/* Product Name */}
@@ -168,7 +160,7 @@ export function ProductCard({
                     key={i}
                     className={cn(
                       "h-3 w-3",
-                      i < Math.floor(product.rating)
+                      i < Math.floor(product.avgRating)
                         ? "fill-yellow-400 text-yellow-400"
                         : "text-gray-300"
                     )}
@@ -176,7 +168,7 @@ export function ProductCard({
                 ))}
               </div>
               <span className="text-xs text-muted-foreground">
-                ({product.reviewCount})
+                ({product.reviews.length})
               </span>
             </div>
 
@@ -185,11 +177,6 @@ export function ProductCard({
               <span className="font-bold text-lg">
                 ${product.price.toFixed(2)}
               </span>
-              {product.originalPrice && (
-                <span className="text-sm text-muted-foreground line-through">
-                  ${product.originalPrice.toFixed(2)}
-                </span>
-              )}
             </div>
 
             {/* Stock Status */}
