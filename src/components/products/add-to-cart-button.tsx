@@ -3,22 +3,25 @@
 import { useState } from 'react';
 import { Minus, Plus, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { toast } from 'sonner';
-
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  stock: number;
-}
+import { useCartStore } from '@/lib/stores/cart-store';
 
 interface AddToCartButtonProps {
-  product: Product;
+  product: {
+    id: string;
+    name: string;
+    price: number;
+    stock: number;
+    images: string[];
+    category: {
+      name: string;
+    };
+  };
 }
 
 export function AddToCartButton({ product }: AddToCartButtonProps) {
   const [quantity, setQuantity] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const { addItem } = useCartStore();
 
   const handleQuantityChange = (change: number) => {
     const newQuantity = quantity + change;
@@ -29,23 +32,26 @@ export function AddToCartButton({ product }: AddToCartButtonProps) {
 
   const handleAddToCart = async () => {
     if (product.stock === 0) {
-      toast.error('Product is out of stock');
       return;
     }
 
     setIsLoading(true);
     
     try {
-      // TODO: Implement actual cart functionality
-      // For now, just show a success message
-      await new Promise(resolve => setTimeout(resolve, 500)); // Simulate API call
-      
-      toast.success(`Added ${quantity} ${product.name} to cart`);
+      addItem({
+        productId: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.images[0] || '/images/placeholder.jpg',
+        stock: product.stock,
+        category: product.category.name,
+        quantity,
+      });
       
       // Reset quantity after successful add
       setQuantity(1);
-    } catch {
-      toast.error('Failed to add item to cart');
+    } catch (error) {
+      console.error('Failed to add item to cart:', error);
     } finally {
       setIsLoading(false);
     }
@@ -53,23 +59,27 @@ export function AddToCartButton({ product }: AddToCartButtonProps) {
 
   const handleBuyNow = async () => {
     if (product.stock === 0) {
-      toast.error('Product is out of stock');
       return;
     }
 
     setIsLoading(true);
     
     try {
-      // TODO: Implement buy now functionality
-      // This would typically add to cart and redirect to checkout
-      await new Promise(resolve => setTimeout(resolve, 500)); // Simulate API call
+      // Add to cart first
+      addItem({
+        productId: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.images[0] || '/images/placeholder.jpg',
+        stock: product.stock,
+        category: product.category.name,
+        quantity,
+      });
       
-      toast.success('Redirecting to checkout...');
-      
-      // TODO: Redirect to checkout page
-      // router.push('/checkout');
-    } catch {
-      toast.error('Failed to process request');
+      // Redirect to cart page
+      window.location.href = '/cart';
+    } catch (error) {
+      console.error('Failed to process buy now:', error);
     } finally {
       setIsLoading(false);
     }

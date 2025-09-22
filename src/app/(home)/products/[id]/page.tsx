@@ -8,6 +8,7 @@ import { ProductImageGallery } from '@/components/products/product-image-gallery
 import { ProductReviews } from '@/components/products/product-reviews';
 import { RelatedProducts } from '@/components/products/related-products';
 import { AddToCartButton } from '@/components/products/add-to-cart-button';
+import { cn } from '@/lib/utils';
 
 type tParams = Promise<{ id: string }>;
 
